@@ -2,8 +2,12 @@
 
 <h1>Welcome to VGC!</h1>
 
-<a href="/login">Login</a>
-<a href="/register">Register</a>
+<%if !(Helpers.is_logged_in?(session))%>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+<%else%>
+    <a href="/logout">Logout</a>
+<%end%>
 
 
 <h3>What games our users have been adding to their libraries:</h3>
