@@ -1,0 +1,11 @@
+<h1>Game Collection Control Panel</h1>
+<a href="/">Home
+<a href="/games/new">Add a Game</a>
+
+<%if @user.games.empty?%>
+    <label>You do not currently have any games!</label>
+<%else%>
+    <%@user.games.each do |game|%>
+        <label>HOW IS THIS POSSIBLE</label>
+    <%end%>
+<%end%>
