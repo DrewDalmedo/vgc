@@ -26,6 +26,18 @@ class UsersController < ApplicationController
     get '/login' do
         if Helpers.is_logged_in?(session)
             redirect to '/'
+        else
+            erb :'users/login'
+        end
+    end
+
+    post '/login' do
+        user = Helpers.validate_user(params[:username], params[:password])
+        if user
+            session[:user_id] = user.id
+            redirect to '/'
+        else
+            redirect to '/login'
         end
     end
 
