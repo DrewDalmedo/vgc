@@ -6,4 +6,14 @@ class Helpers
             return true
         end
     end
+
+    def self.user_exists?(username, password)
+        user = User.all.find_by(username: username)
+        binding.pry
+        if !user.nil? && user.authenticate(password)
+            return user
+        end
+        
+        nil
+    end
 end
