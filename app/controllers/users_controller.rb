@@ -46,4 +46,10 @@ class UsersController < ApplicationController
         session.clear
         redirect to '/'
     end
+
+    # user account page
+    get "/users/:id" do
+        @user = User.find_by(id: params[:id])
+        erb :'users/account_info'
+    end
 end
