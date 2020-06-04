@@ -33,4 +33,15 @@ class GamesController < ApplicationController
         game.save
         redirect to '/games'
     end
+
+    # detailed game view
+    get "/games/:id" do
+        if Helpers.is_logged_in?(session)
+            @user = User.find(session[:user_id])
+            @game = Game.find(params[:id])
+            erb :'games/game.erb'
+        else
+            redirect to '/login'
+        end
+    end
 end
