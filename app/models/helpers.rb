@@ -14,6 +14,6 @@ class Helpers
             return user
         end
         
-        nil
+        false
     end
 end
