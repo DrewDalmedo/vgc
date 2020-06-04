@@ -6,6 +6,8 @@
     <a href="/login">Login</a>
     <a href="/register">Register</a>
 <%else%>
+    <a href=<%="/games"%>>Your Games</a>
+    <a href=<%="/users/"+session[:user_id].to_s%>>Profile</a>
     <a href="/logout">Logout</a>
 <%end%>
 
