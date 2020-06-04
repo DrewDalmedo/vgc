@@ -9,7 +9,6 @@ class Helpers
 
     def self.validate_user(username, password)
         user = User.all.find_by(username: username)
-        binding.pry
         if !user.nil? && user.authenticate(password)
             return user
         end
