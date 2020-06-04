@@ -12,13 +12,25 @@ class GamesController < ApplicationController
 
     # new game creation
     get '/games/new' do
-        
         if Helpers.is_logged_in?(session)
             @user = User.find(session[:user_id])
             erb :'games/new'
         else
             redirect to '/login'
         end
+    end
+
+    post '/games' do
+        game = Game.new()
+        game.title = params[:title]
+        game.description = params[:description]
+        game.genre = params[:genre]
+        game.platform = params[:platform]
+        game.developer = params[:developer]
+        game.publisher = params[:publisher]
+        game.user_id = session[:user_id]
         
+        game.save
+        redirect to '/games'
     end
 end
