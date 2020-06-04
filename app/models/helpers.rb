@@ -7,7 +7,7 @@ class Helpers
         end
     end
 
-    def self.user_exists?(username, password)
+    def self.user_is_valid?(username, password)
         user = User.all.find_by(username: username)
         binding.pry
         if !user.nil? && user.authenticate(password)
