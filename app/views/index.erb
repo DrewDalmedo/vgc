@@ -5,12 +5,25 @@
 <%if !(Helpers.is_logged_in?(session))%>
     <a href="/login">Login</a>
     <a href="/register">Register</a>
+    <br><br>
 <%else%>
     <a href=<%="/games"%>>Your Games</a>
     <a href=<%="/users/"+session[:user_id].to_s%>>Profile</a>
     <a href="/logout">Logout</a>
+    <br><br>
 <%end%>
 
 
 <h3>What games our users have been adding to their libraries lately:</h3>
-Fill me out later!
+<%Game.all.reverse.each do |game|%>
+    <h2><%=game.title%></h2>
+    <%if !game.developer.empty?%>
+        <h4><%="By " + game.developer%></h4><br>
+    <%end%>
+    <%if !game.description.empty?%>
+        <label><%=game.description if !game.description.empty?%></label><br><br>
+    <%end%>
+    <a href=<%="/games/"+game.id.to_s%>>More Info</a><br>
+    <label>(Added by <a href=<%="/users/"+game.user_id.to_s%>><%=User.find(game.user_id).username%>)</a></label>
+    <br><br>
+<%end%>
