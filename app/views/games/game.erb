@@ -19,10 +19,13 @@
 
 <br>
 
+<%if @game.user_id == @user.id%>
 <form action=<%="/games/"+@game.id.to_s+"/edit"%> method="GET">
     <input id="edit" type="submit" value="Edit Game">
 </form>
 
-<form action="/games" method="GET">
+<form action=<%="/games/"+@game.id.to_s%> method="POST">
+    <input type="hidden" name="_method" value="delete">
     <input id="delete" type="submit" value="Delete Game">
 </form>
+<%end%>
