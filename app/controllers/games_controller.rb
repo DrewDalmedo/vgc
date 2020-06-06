@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
     # game collection view
     get '/games' do
+        #binding.pry
         # shows the user's current games
         if Helpers.is_logged_in?(session)
             @user = User.find(session[:user_id])
@@ -69,5 +70,16 @@ class GamesController < ApplicationController
         @game.save
 
         redirect to "/games/#{params[:id]}"
+    end
+
+    # deleting game entires
+    delete "/games/:id" do
+        @game = Game.find(params[:id])
+        if Helpers.is_logged_in?(session) && @game.user_id == session[:user_id]
+            @game.delete
+            redirect to '/games'
+        else
+            redirect to '/login'
+        end
     end
 end
