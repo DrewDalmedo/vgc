@@ -21,6 +21,7 @@ class GamesController < ApplicationController
     end
 
     post '/games' do
+        # TODO: make it so that you cannot create a new game without a title
         game = Game.new()
         game.title = params[:title]
         game.description = params[:description]
@@ -39,9 +40,34 @@ class GamesController < ApplicationController
         if Helpers.is_logged_in?(session)
             @user = User.find(session[:user_id])
             @game = Game.find(params[:id])
-            erb :'games/game.erb'
+            erb :'games/game'
         else
             redirect to '/login'
         end
+    end
+
+    # edit game entry
+    get "/games/:id/edit" do
+        @game = Game.find(params[:id])
+        if Helpers.is_logged_in?(session) && @game.user_id == session[:user_id]
+            erb :'games/edit'
+        else
+            redirect to '/login'
+        end
+    end
+
+    patch "/games/:id" do
+        @game = Game.find(params[:id])
+
+        @game.title = params[:title]
+        @game.description = params[:description]
+        @game.genre = params[:genre]
+        @game.platform = params[:platform]
+        @game.developer = params[:developer]
+        @game.publisher = params[:publisher]
+
+        @game.save
+
+        redirect to "/games/#{params[:id]}"
     end
 end
