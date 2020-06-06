@@ -1,0 +1,13 @@
+<h1>Editing <%=@game.title%></h1>
+
+<form action=<%="/games/"+@game.id.to_s%> method="POST">
+    <input type="hidden" name="_method" value="patch">
+    <label>Title: <input type="text" name="title" value='<%=@game.title%>'></label><br>
+    <label>Description: <input type="text" name="description" value='<%=@game.description%>'></label><br>
+    <label>Genre: <input type="text" name="genre" value='<%=@game.genre%>'></label><br>
+    <label>Platform: <input type="text" name="platform" value='<%=@game.platform%>'></label><br>
+    <label>Developer: <input type="text" name="developer" value='<%=@game.developer%>'></label><br>
+    <label>Publisher: <input type="text" name="publisher" value='<%=@game.publisher%>'></label><br>
+
+    <input type="submit">
+</form>
