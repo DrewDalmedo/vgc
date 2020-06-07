@@ -29,10 +29,19 @@ class GamesController < ApplicationController
             game.title = params[:title]
             game.description = params[:description]
             game.genre = params[:genre]
-            game.platform = params[:platform]
+            #game.platform = params[:platform]
             game.developer = params[:developer]
             game.publisher = params[:publisher]
             game.user_id = session[:user_id]
+
+            params[:console].each do |key, value|
+                if value == "on"
+                    game.console = Console.find(key.to_i)
+                    break
+                end
+            end
+
+            binding.pry
         
             game.save
             redirect to '/games'
