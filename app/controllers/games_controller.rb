@@ -88,7 +88,7 @@ class GamesController < ApplicationController
     delete "/games/:id" do
         @game = Game.find(params[:id])
         if Helpers.is_logged_in?(session) && @game.user_id == session[:user_id]
-            @game.delete
+            @game.destroy
             redirect to '/games'
         else
             redirect to '/login'
