@@ -11,19 +11,19 @@ class ConsolesController < ApplicationController
         end
     end
 
-    '''
+    
     # new game creation
     get '/consoles/new' do
         if Helpers.is_logged_in?(session)
             @user = User.find(session[:user_id])
-            erb :'games/new'
+            erb :'consoles/new'
         else
             redirect to '/login'
         end
     end
 
     post '/consoles' do
-        if params[:title].empty?
+        if params[:name].empty?
             redirect to '/games/new'
         else
             game = Game.new()
@@ -40,6 +40,7 @@ class ConsolesController < ApplicationController
         end
     end
 
+    '''
     # detailed game view
     get "/consoles/:id" do
         if Helpers.is_logged_in?(session)
