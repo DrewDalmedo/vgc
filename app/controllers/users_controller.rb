@@ -16,9 +16,13 @@ class UsersController < ApplicationController
         if (params[:username].empty? || params[:email].empty? || params[:password].empty?)
             redirect to '/register'
         else # if all text boxes are filled in...
-            @user = User.create(username: params[:username], email: params[:email], password: params[:password])
-            session[:user_id] = @user.id
-            redirect to '/'
+            if !(Helpers.user_exists?(params[:username], params[:email]))
+                @user = User.create(username: params[:username], email: params[:email], password: params[:password])
+                session[:user_id] = @user.id
+                redirect to '/'
+            else
+                redirect to '/register'
+            end
         end
     end
 
