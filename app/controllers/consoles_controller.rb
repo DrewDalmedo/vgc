@@ -37,18 +37,19 @@ class ConsolesController < ApplicationController
         end
     end
 
-    '''
+    
     # detailed game view
     get "/consoles/:id" do
         if Helpers.is_logged_in?(session)
             @user = User.find(session[:user_id])
-            @game = Game.find(params[:id])
-            erb :'games/game'
+            @console = Console.find(params[:id])
+            erb :'consoles/console'
         else
             redirect to '/login'
         end
     end
 
+    '''
     # edit game entry
     get "/consoles/:id/edit" do
         @game = Game.find(params[:id])
