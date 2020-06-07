@@ -15,4 +15,9 @@ class Helpers
         
         false
     end
+
+    def self.user_exists?(username, email)
+        return false if (User.find_by(username: username).nil? && User.find_by(email: email).nil?)
+        true
+    end
 end
