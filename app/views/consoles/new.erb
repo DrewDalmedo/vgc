@@ -1,0 +1,14 @@
+<h1>New Console</h1>
+<a href='/'>Home</a>
+<a href=<%'/users/'+@user.id.to_s%>>Profile</a>
+<a href='/consoles'>Back to Consoles</a>
+<br><br>
+
+<form action="/consoles" method="POST">
+    <label>Name: <br><input id="name" type="text" name="name"></label><br><br>
+    <label>Edition: <br><input id="edition" type="text" name="edition"></label><br><br>
+    <label>Brand: <br><input id="brand" type="text" name="brand"></label><br><br>
+    <label>Company: <br><input id="company" type="text" name="company"></label><br><br>
+    
+    <input type="submit">
+</form>
