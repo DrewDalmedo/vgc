@@ -74,16 +74,16 @@ class ConsolesController < ApplicationController
 
         redirect to "/consoles/#{params[:id]}"
     end
-'''
+
     # deleting game entires
     delete "/consoles/:id" do
-        @game = Game.find(params[:id])
-        if Helpers.is_logged_in?(session) && @game.user_id == session[:user_id]
-            @game.delete
-            redirect to /games
+        @console = Console.find(params[:id])
+        if Helpers.is_logged_in?(session) && @console.user_id == session[:user_id]
+            @console.destroy
+            redirect to '/console'
         else
-            redirect to /login
+            redirect to '/login'
         end
     end
-    '''
+    
 end
