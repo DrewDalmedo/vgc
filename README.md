@@ -1,8 +1,10 @@
 # VGC
-A video game collection organization web app, built in Sinatra.
+A video game collection organization web app, built with Sinatra.
 
 ## About
-VGC is a web app designed to help users organize their video game and video game console collections. 
+VGC is a web app designed to help users organize their video game and video game console collections. They can create, view, update and delete both games and consoles. All data is persisted to a SQLite database.
+
+This web app uses Sinatra, a DSL for creating web apps. 
 
 ## Usage
 Currently, there is only one way to use this app: you need to run a local development server.
