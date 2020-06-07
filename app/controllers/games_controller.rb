@@ -22,18 +22,21 @@ class GamesController < ApplicationController
     end
 
     post '/games' do
-        # TODO: make it so that you cannot create a new game without a title
-        game = Game.new()
-        game.title = params[:title]
-        game.description = params[:description]
-        game.genre = params[:genre]
-        game.platform = params[:platform]
-        game.developer = params[:developer]
-        game.publisher = params[:publisher]
-        game.user_id = session[:user_id]
+        if params[:title].empty?
+            redirect to '/games/new'
+        else
+            game = Game.new()
+            game.title = params[:title]
+            game.description = params[:description]
+            game.genre = params[:genre]
+            game.platform = params[:platform]
+            game.developer = params[:developer]
+            game.publisher = params[:publisher]
+            game.user_id = session[:user_id]
         
-        game.save
-        redirect to '/games'
+            game.save
+            redirect to '/games'
+        end
     end
 
     # detailed game view
