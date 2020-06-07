@@ -12,3 +12,13 @@
     <%end%>
     <a href=<%="/games/"+game.id.to_s%>>More Info</a><br><br>
 <%end%>
+
+<h3>Consoles:</h3>
+<%@user.consoles.each do |console|%>
+    <h2><%=console.name%></h3>
+    <%if !console.company.empty?%>
+        <h4><%=console.company%></h4><br>
+    <%end%>
+    <a href=<%="/consoles/"+console.id.to_s%>>More Info</a>
+    <br><br>
+<%end%>
