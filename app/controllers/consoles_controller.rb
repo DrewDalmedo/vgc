@@ -38,7 +38,7 @@ class ConsolesController < ApplicationController
     end
 
     
-    # detailed game view
+    # detailed console view
     get "/consoles/:id" do
         if Helpers.is_logged_in?(session)
             @user = User.find(session[:user_id])
@@ -49,40 +49,40 @@ class ConsolesController < ApplicationController
         end
     end
 
-    '''
-    # edit game entry
+    
+    # edit console
     get "/consoles/:id/edit" do
-        @game = Game.find(params[:id])
-        if Helpers.is_logged_in?(session) && @game.user_id == session[:user_id]
-            erb :'games/edit'
+        @console = Console.find(params[:id])
+        if Helpers.is_logged_in?(session) && @console.user_id == session[:user_id]
+            erb :'consoles/edit'
         else
             redirect to '/login'
         end
     end
 
     patch "/consoles/:id" do
-        @game = Game.find(params[:id])
+        @console = Console.find(params[:id])
 
-        @game.title = params[:title]
-        @game.description = params[:description]
-        @game.genre = params[:genre]
-        @game.platform = params[:platform]
-        @game.developer = params[:developer]
-        @game.publisher = params[:publisher]
+        @console.name = params[:name]
+        @console.edition = params[:edition]
+        @console.brand = params[:brand]
+        @console.company = params[:company]
+        
+        #binding.pry
 
-        @game.save
+        @console.save
 
-        redirect to "/games/#{params[:id]}"
+        redirect to "/consoles/#{params[:id]}"
     end
-
+'''
     # deleting game entires
     delete "/consoles/:id" do
         @game = Game.find(params[:id])
         if Helpers.is_logged_in?(session) && @game.user_id == session[:user_id]
             @game.delete
-            redirect to '/games'
+            redirect to /games
         else
-            redirect to '/login'
+            redirect to /login
         end
     end
     '''
