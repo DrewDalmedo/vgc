@@ -1,8 +1,7 @@
 class ConsolesController < ApplicationController
     # console collection view
     get '/consoles' do
-        #binding.pry
-        # shows the user's current games
+        # shows the user's current consoles
         if Helpers.is_logged_in?(session)
             @user = User.find(session[:user_id])
             erb :'consoles/users_consoles'
@@ -12,7 +11,7 @@ class ConsolesController < ApplicationController
     end
 
     
-    # new game creation
+    # new console creation
     get '/consoles/new' do
         if Helpers.is_logged_in?(session)
             @user = User.find(session[:user_id])
@@ -24,19 +23,17 @@ class ConsolesController < ApplicationController
 
     post '/consoles' do
         if params[:name].empty?
-            redirect to '/games/new'
+            redirect to '/consoles/new'
         else
-            game = Game.new()
-            game.title = params[:title]
-            game.description = params[:description]
-            game.genre = params[:genre]
-            game.platform = params[:platform]
-            game.developer = params[:developer]
-            game.publisher = params[:publisher]
-            game.user_id = session[:user_id]
+            console = Console.new()
+            console.name = params[:name]
+            console.edition = params[:edition]
+            console.brand = params[:brand]
+            console.company = params[:company]
+            console.user_id = session[:user_id]
         
-            game.save
-            redirect to '/games'
+            console.save
+            redirect to '/consoles'
         end
     end
 
