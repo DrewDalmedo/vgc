@@ -8,9 +8,15 @@
     <label>Title: <br><input id="title" type="text" name="title"></label><br><br>
     <label>Description: <br><input id="description" type="text" name="description"></label><br><br>
     <label>Genre: <br><input id="genre" type="text" name="genre"></label><br><br>
-    <label>Platform: <br><input id="platform" type="text" name="platform"></label><br><br>
     <label>Developer: <br><input id="developer" type="text" name="developer"></label><br><br>
     <label>Publisher: <br><input id="publisher" type="text" name="publisher"></label><br><br>
+
+    <%if !@user.consoles.empty?%>
+        <label>Please select a console that this game is on:</label><br>
+        <%@user.consoles.each do |console|%>
+            <input type="radio" name=<%="console["+console.id.to_s+"]"%>> <%=console.name%><br>
+        <%end%>
+    <%end%>
     
     <input type="submit">
 </form>
