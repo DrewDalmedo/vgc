@@ -41,7 +41,7 @@ class GamesController < ApplicationController
                 end
             end
 
-            binding.pry
+            #binding.pry
         
             game.save
             redirect to '/games'
@@ -61,6 +61,7 @@ class GamesController < ApplicationController
 
     # edit game entry
     get "/games/:id/edit" do
+        @user = User.find(session[:user_id])
         @game = Game.find(params[:id])
         if Helpers.is_logged_in?(session) && @game.user_id == session[:user_id]
             erb :'games/edit'
@@ -75,9 +76,16 @@ class GamesController < ApplicationController
         @game.title = params[:title]
         @game.description = params[:description]
         @game.genre = params[:genre]
-        @game.platform = params[:platform]
+        #@game.platform = params[:platform]
         @game.developer = params[:developer]
         @game.publisher = params[:publisher]
+
+        params[:console].each do |key, value|
+            if value == "on"
+                @game.console = Console.find(key.to_i)
+                break
+            end
+        end
 
         @game.save
 
