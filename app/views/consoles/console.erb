@@ -33,11 +33,11 @@
 
 <%if @console.user_id == @user.id%>
 <form action=<%="/consoles/"+@console.id.to_s+"/edit"%> method="GET">
-    <input id="edit" type="submit" value="Edit Game">
+    <input id="edit" type="submit" value="Edit Console">
 </form>
 
 <form action=<%="/consoles/"+@console.id.to_s%> method="POST">
     <input type="hidden" name="_method" value="delete">
-    <input id="delete" type="submit" value="Delete Game">
+    <input id="delete" type="submit" value="Delete Console">
 </form>
 <%end%>
