@@ -9,7 +9,9 @@
 <br>
 <label>Genre: <%=@game.genre%></label><br>
 
-<label>Console: <%=@game.console.name%></label><br>
+<%if !@game.console.nil?%>
+    <label>Console: <%=@game.console.name%></label><br>
+<%end%>
 
 <label>Publisher: <%=@game.publisher%></label><br>
 <br>
