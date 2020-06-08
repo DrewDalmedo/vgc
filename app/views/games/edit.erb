@@ -11,7 +11,7 @@
     <%if !@user.consoles.empty?%>
         <label>Please select a console that this game is on:</label><br>
         <%@user.consoles.each do |console|%>
-            <input type="radio" name=<%="console["+console.id.to_s+"]"%> value=<%="on" if @game.console == console%>> <%=console.name%><br>
+            <input type="radio" id=<%="console["+console.id.to_s+"]"%> name="console" value='<%=console.id%>'> <label for=<%="console["+console.id.to_s+"]"%>><%=console.name%></label><br>
         <%end%>
     <%end%>
 
