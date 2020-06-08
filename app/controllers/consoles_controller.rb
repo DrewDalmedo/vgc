@@ -80,7 +80,7 @@ class ConsolesController < ApplicationController
         @console = Console.find(params[:id])
         if Helpers.is_logged_in?(session) && @console.user_id == session[:user_id]
             @console.destroy
-            redirect to '/console'
+            redirect to '/consoles'
         else
             redirect to '/login'
         end
