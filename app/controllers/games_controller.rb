@@ -33,6 +33,7 @@ class GamesController < ApplicationController
             game.developer = params[:developer]
             game.publisher = params[:publisher]
             game.user_id = session[:user_id]
+            game.console = Console.find(params[:console].to_i)
 
             #binding.pry
         
