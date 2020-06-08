@@ -1,0 +1,17 @@
+<h1>Your Console Collection Control Panel</h1>
+<a href="/">Home</a>
+<a href="/consoles/new">Add a Console</a>
+<br><br>
+
+<%if @user.consoles.empty?%>
+    <label>You do not currently have any consoles!</label>
+<%else%>
+    <%@user.consoles.each do |console|%>
+        <h2><%=console.name%></h3>
+        <%if !console.company.empty?%>
+            <h4><%=console.company%></h4><br>
+        <%end%>
+        <a href=<%="/consoles/"+console.id.to_s%>>More Info</a>
+        <br><br>
+    <%end%>
+<%end%>

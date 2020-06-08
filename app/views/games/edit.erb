@@ -1,0 +1,19 @@
+<h1>Editing <%=@game.title%></h1>
+
+<form action=<%="/games/"+@game.id.to_s%> method="POST">
+    <input type="hidden" name="_method" value="patch">
+    <label>Title: <input type="text" name="title" value='<%=@game.title%>'></label><br>
+    <label>Description: <input type="text" name="description" value='<%=@game.description%>'></label><br>
+    <label>Genre: <input type="text" name="genre" value='<%=@game.genre%>'></label><br>
+    <label>Developer: <input type="text" name="developer" value='<%=@game.developer%>'></label><br>
+    <label>Publisher: <input type="text" name="publisher" value='<%=@game.publisher%>'></label><br>
+
+    <%if !@user.consoles.empty?%>
+        <label>Please select a console that this game is on:</label><br>
+        <%@user.consoles.each do |console|%>
+            <input type="radio" id=<%="console["+console.id.to_s+"]"%> name="console" value='<%=console.id%>'> <label for=<%="console["+console.id.to_s+"]"%>><%=console.name%></label><br>
+        <%end%>
+    <%end%>
+
+    <input type="submit">
+</form>

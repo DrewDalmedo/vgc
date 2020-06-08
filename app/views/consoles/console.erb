@@ -1,0 +1,43 @@
+<a href="/">Home</a>
+<a href="/consoles">Back to Consoles</a>
+
+
+<h1><%=@console.name%></h1>
+
+<label>Edition: <%=@console.edition%></label><br>
+
+<label>Brand: <%=@console.brand%></label><br>
+
+<label>Company: <%=@console.company%></label><br>
+<br>
+
+<%if !@console.games.empty?%>
+<label>Games for this console:
+<%@console.games.each do |game|%>
+    <h2><%=game.title%></h3>
+    <%if !game.developer.empty?%>
+        <h4><%="By " + game.developer%></h4><br>
+    <%end%>
+    <%if !game.description.empty?%>
+        <label><%=game.description if !game.description.empty?%></label><br><br>
+    <%end%>
+    <a href=<%="/games/"+game.id.to_s%>>More Info</a>
+    <br><br>
+<%end%>
+<%end%>
+
+<label>Added by: </label>
+<a href=<%="/users/"+@user.id.to_s%>><%=@user.username%></a><br>
+
+<br>
+
+<%if @console.user_id == @user.id%>
+<form action=<%="/consoles/"+@console.id.to_s+"/edit"%> method="GET">
+    <input id="edit" type="submit" value="Edit Console">
+</form>
+
+<form action=<%="/consoles/"+@console.id.to_s%> method="POST">
+    <input type="hidden" name="_method" value="delete">
+    <input id="delete" type="submit" value="Delete Console">
+</form>
+<%end%>

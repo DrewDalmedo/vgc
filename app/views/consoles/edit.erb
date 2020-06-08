@@ -1,0 +1,12 @@
+<h1>Editing <%=@console.name%></h1>
+
+<form action=<%="/consoles/"+@console.id.to_s%> method="POST">
+    <input type="hidden" name="_method" value="patch">
+    <label>Name: <input type="text" name="name" value='<%=@console.name%>'></label><br>
+    <label>Edition: <input type="text" name="edition" value='<%=@console.edition%>'></label><br>
+    <label>Brand: <input type="text" name="brand" value='<%=@console.brand%>'></label><br>
+    <label>Company: <input type="text" name="company" value='<%=@console.company%>'></label><br>
+    <br>
+
+    <input type="submit">
+</form>

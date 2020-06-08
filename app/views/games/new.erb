@@ -1,0 +1,22 @@
+<h1>New Game</h1>
+<a href='/'>Home</a>
+<a href=<%='/users/'+@user.id.to_s%>>Profile</a>
+<a href='/games'>Back to Games</a>
+<br><br>
+
+<form action="/games" method="POST">
+    <label>Title: <br><input id="title" type="text" name="title"></label><br><br>
+    <label>Description: <br><input id="description" type="text" name="description"></label><br><br>
+    <label>Genre: <br><input id="genre" type="text" name="genre"></label><br><br>
+    <label>Developer: <br><input id="developer" type="text" name="developer"></label><br><br>
+    <label>Publisher: <br><input id="publisher" type="text" name="publisher"></label><br><br>
+
+    <%if !@user.consoles.empty?%>
+        <label>Please select a console that this game is on:</label><br>
+        <%@user.consoles.each do |console|%>
+            <input type="radio" id="<%=console.id.to_s%>"name="console" value="<%=console.id.to_s%>"><label for="<%=console.id.to_s%>"> <%=console.name%></label><br>
+        <%end%>
+    <%end%>
+    
+    <input type="submit">
+</form>
