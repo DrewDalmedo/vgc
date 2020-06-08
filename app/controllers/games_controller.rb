@@ -34,13 +34,6 @@ class GamesController < ApplicationController
             game.publisher = params[:publisher]
             game.user_id = session[:user_id]
 
-            params[:console].each do |key, value|
-                if value == "on"
-                    game.console = Console.find(key.to_i)
-                    break
-                end
-            end
-
             #binding.pry
         
             game.save
@@ -79,13 +72,8 @@ class GamesController < ApplicationController
         #@game.platform = params[:platform]
         @game.developer = params[:developer]
         @game.publisher = params[:publisher]
-
-        params[:console].each do |key, value|
-            if value == "on"
-                @game.console = Console.find(key.to_i)
-                break
-            end
-        end
+        @game.console = Console.find(params[:console].to_i)
+        #binding.pry
 
         @game.save
 
